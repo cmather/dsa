@@ -1,0 +1,11 @@
+{
+  "name": "dsa",
+  "version": "1.0.0",
+  "description": "A library of data structures and algorithms.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Chris Mather <chris@eventedmind.com>",
+  "license": "MIT"
+}
