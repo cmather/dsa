@@ -81,4 +81,46 @@ describe("BinaryTree", () => {
     t.root = new BinaryNode('a');
     assert(t.root.value == 'a');
   });
+
+  it ("should provide preorder traversal", () => {
+    let t = new BinaryTree;
+    t.root = new BinaryNode(1);
+    t.root.left = new BinaryNode(2);
+    t.root.right = new BinaryNode(3);
+
+    let results = [];
+    t.preorder((value) => results.push(value));
+    assert(results.length == 3);
+    assert(results[0] == 1);
+    assert(results[1] == 2);
+    assert(results[2] == 3);
+  });
+
+  it ("should provide inorder traversal", () => {
+    let t = new BinaryTree;
+    t.root = new BinaryNode(1);
+    t.root.left = new BinaryNode(2);
+    t.root.right = new BinaryNode(3);
+
+    let results = [];
+    t.inorder((value) => results.push(value));
+    assert(results.length == 3);
+    assert(results[0] == 2);
+    assert(results[1] == 1);
+    assert(results[2] == 3);
+  });
+
+  it ("should provide postorder traversal", () => {
+    let t = new BinaryTree;
+    t.root = new BinaryNode(1);
+    t.root.left = new BinaryNode(2);
+    t.root.right = new BinaryNode(3);
+
+    let results = [];
+    t.postorder((value) => results.push(value));
+    assert(results.length == 3);
+    assert(results[0] == 2);
+    assert(results[1] == 3);
+    assert(results[2] == 1);
+  });
 });
