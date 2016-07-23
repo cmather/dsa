@@ -1,59 +1,85 @@
 import assert from 'assert';
-import Graph, {GraphVertex} from '../lib/graph';
+import Graph, {Vertex, Edge} from '../lib/graph';
 
-describe('GraphVertex', () => {
-  it('should allow adding edges', () => {
-    let v = new GraphVertex('a');
-    v.add(new GraphVertex('b'));
-    v.add(new GraphVertex('c'));
-    assert(v.degree == 2);
+describe("Vertex", () => {
+  it ("should construct", () => {
+    let v = new Vertex('a');
   });
-  
-  it('should allow iterating edges', () => {
-    let v = new GraphVertex('a');
-    v.add(new GraphVertex('b'));
-    v.add(new GraphVertex('c'));
 
-    let results = [];
-    for (var edge of v) {
-      results.push(edge);
-    }
-
+  it ("should allow adding edges of raw values", () => {
+    let v = new Vertex('a');
+    v.addEdge('b');
+    v.addEdge('c');
     assert(v.degree == 2);
-    assert(results.length == 2);
-    assert(results[0] == v.edges[0]);
-    assert(results[1] == v.edges[1]);
+    assert(v.edges[0].to.value == 'b');
+    assert(v.edges[1].to.value == 'c');
+  });
+
+  it ("should allow adding edge of type Vertex", () => {
+    let a = new Vertex('a');
+    let b = new Vertex('b');
+    a.addEdge(b);
+    assert(a.degree == 1);
+    assert(a.edges[0].to == b);
+  });
+
+  it ("should allow adding edges of type Edge", () => {
+    let a = new Vertex('a');
+    let b = new Vertex('b');
+    let edge = new Edge(a, b);
+    a.addEdge(edge);
+    assert(a.degree == 1);
+    assert(a.edges[0].to == b);
   });
 });
 
-describe('Graph', () => {
-  it('should load', () => assert(Graph));
-
-  it('should construct', () => {
-    let graph = new Graph();
-    assert(graph);
+describe("Graph", () => {
+  it ("should construct", () => {
+    let g = new Graph;
   });
 
-  it('should allow adding vertices', () => {
-    let graph = new Graph();
-    let v = new GraphVertex('a');
-    graph.add(v);
-    assert(graph.size == 1);
-    assert(graph.vertices[0] == v);
+  it ("should allow adding undirected edges", () => {
+    let g = new Graph;
+    g.addEdge('a', 'b');
+    assert(g.size == 2);
+    assert(g.vertices[0].value == 'a');
+    assert(g.vertices[0].degree == 1);
+    assert(g.vertices[0].edges[0].to.value == 'b');
+    assert(g.vertices[1].value == 'b');
+    assert(g.vertices[1].degree == 1);
+    assert(g.vertices[1].edges[0].to.value == 'a');
   });
 
-  it('should allow iterating vertices', () => {
-    let graph = new Graph();
+  it ("should allow adding directed edges", () => {
+    let g = new Graph({directed: true});
+    g.addEdge('a', 'b');
+    assert(g.size == 1);
+    assert(g.vertices[0].value == 'a');
+    assert(g.vertices[0].degree == 1);
+    assert(g.vertices[0].edges[0].to.value == 'b');
+  });
+
+  it ("should allow adding vertices", () => {
+    let g = new Graph();
+    g.addVertex('a');
+    assert(g.size == 1);
+    assert(g.vertices[0].value == 'a');
+  });
+
+  it ("should allow iterating vertices", () => {
+    let g = new Graph();
+    g.addVertex('a');
+    g.addVertex('b');
+    g.addVertex('c');
+
     let results = [];
-    graph.add(new GraphVertex('a'));
-    graph.add(new GraphVertex('b'));
-
-    for (var v of graph) {
-      results.push(v);
+    for (var v of g) {
+      results.push(v && v.value);
     }
 
-    assert(results.length == 2);
-    assert(results[0] == graph.vertices[0]);
-    assert(results[1] == graph.vertices[1]);
+    assert(results.length == 3);
+    assert(results[0] == 'a');
+    assert(results[1] == 'b');
+    assert(results[2] == 'c');
   });
 });
