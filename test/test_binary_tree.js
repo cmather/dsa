@@ -3,22 +3,24 @@ import BinaryTree, {BinaryNode} from '../lib/binary_tree';
 
 describe("BinaryNode", () => {
   it ("should have degree of two", () => {
-    let n = new BinaryNode(null);
+    let n = new BinaryNode(null, null);
     assert(n.degree == 2);
   });
 
-  it ("should have left and right properties", () => {
-    let n = new BinaryNode('root');
+  it ("should have left, right and parent properties", () => {
+    let n = new BinaryNode('root', 'root');
     assert(n.left == null);
     assert(n.right == null);
-    n.left = new BinaryNode('a');
-    n.right = new BinaryNode('b');
+    n.left = new BinaryNode('a', 'a');
+    n.right = new BinaryNode('a', 'b');
     assert(n.left.value == 'a');
     assert(n.right.value == 'b');
+    assert(n.left.parent == n);
+    assert(n.right.parent == n);
   });
 
   it ("should not allow adding edges", () => {
-    let n = new BinaryNode(null);
+    let n = new BinaryNode(1, 1);
     let thrown = false;
     try {
       n.addEdge('b');
@@ -26,6 +28,12 @@ describe("BinaryNode", () => {
       thrown = true;
     }
     assert(thrown);
+  });
+
+  it ("should use the value as the key by default", () => {
+    let n = new BinaryNode('a', 'a');
+    assert(n.key == 'a');
+    assert(n.value == 'a');
   });
 });
 
@@ -78,18 +86,18 @@ describe("BinaryTree", () => {
 
   it ("should allow setting the root", () => {
     let t = new BinaryTree;
-    t.root = new BinaryNode('a');
+    t.root = new BinaryNode('a', 'a');
     assert(t.root.value == 'a');
   });
 
   it ("should provide preorder traversal", () => {
     let t = new BinaryTree;
-    t.root = new BinaryNode(1);
-    t.root.left = new BinaryNode(2);
-    t.root.right = new BinaryNode(3);
+    t.root = new BinaryNode(1, 1);
+    t.root.left = new BinaryNode(2, 2);
+    t.root.right = new BinaryNode(3, 3);
 
     let results = [];
-    t.preorder((value) => results.push(value));
+    t.preorder((node) => results.push(node.value));
     assert(results.length == 3);
     assert(results[0] == 1);
     assert(results[1] == 2);
@@ -98,12 +106,12 @@ describe("BinaryTree", () => {
 
   it ("should provide inorder traversal", () => {
     let t = new BinaryTree;
-    t.root = new BinaryNode(1);
-    t.root.left = new BinaryNode(2);
-    t.root.right = new BinaryNode(3);
+    t.root = new BinaryNode(1, 1);
+    t.root.left = new BinaryNode(2, 2);
+    t.root.right = new BinaryNode(3, 3);
 
     let results = [];
-    t.inorder((value) => results.push(value));
+    t.inorder((node) => results.push(node.value));
     assert(results.length == 3);
     assert(results[0] == 2);
     assert(results[1] == 1);
@@ -112,12 +120,12 @@ describe("BinaryTree", () => {
 
   it ("should provide postorder traversal", () => {
     let t = new BinaryTree;
-    t.root = new BinaryNode(1);
-    t.root.left = new BinaryNode(2);
-    t.root.right = new BinaryNode(3);
+    t.root = new BinaryNode(1, 1);
+    t.root.left = new BinaryNode(2, 2);
+    t.root.right = new BinaryNode(3, 3);
 
     let results = [];
-    t.postorder((value) => results.push(value));
+    t.postorder((node) => results.push(node.value));
     assert(results.length == 3);
     assert(results[0] == 2);
     assert(results[1] == 3);
