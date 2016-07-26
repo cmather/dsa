@@ -31,6 +31,11 @@ describe("Vertex", () => {
     assert(a.degree == 1);
     assert(a.edges[0].to == b);
   });
+
+  it ("should allow an explicitly set null key as an option", () => {
+    let v = new Vertex(null, {key: null});
+    assert(v.key == null, `v.key is ${v.key} instead of null.`);
+  });
 });
 
 describe("Graph", () => {
