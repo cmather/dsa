@@ -4,17 +4,25 @@
   "description": "A library of data structures and algorithms.",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon -x 'node_modules/mocha/bin/mocha --compilers js:babel-core/register --require babel-polyfill'"
+    "test": "nodemon -x 'node_modules/mocha/bin/mocha --compilers js:babel-core/register --require babel-polyfill'",
+    "babel-node": "babel-node --presets=es2015 --ignore=''",
+    "start": "webpack-dev-server --content-base test/app/ --inline --hot --colors"
   },
   "author": "Chris Mather <chris@eventedmind.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
     "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-runtime": "^6.11.6",
+    "connect": "^3.4.1",
     "mocha": "^2.5.3",
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
