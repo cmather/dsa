@@ -3,6 +3,8 @@ import RedBlackTree, {RedBlackTreeNode, NullNode} from '../lib/red_black_tree';
 
 function constructTree() {
   let tree = new RedBlackTree;
+  // mock out the fixInsert method so we can test without coloring fixes.
+  tree.fixInsert = () => {};
 
   tree.insert(5);
 
@@ -27,6 +29,8 @@ describe("NullNode", () => {
 describe("RedBlackTreeNode", () => {
   it ("should set correct default left, right and color", () => {
     let t = new RedBlackTree;
+    // mock out the fixInsert so we don't do rotations yet.
+    t.fixInsert = () => {};
     let node = t.insert(5);
     assert(node.left == NullNode);
     assert(node.right == NullNode);
@@ -90,6 +94,8 @@ describe("RedBlackTree", () => {
      */
 
     tree = new RedBlackTree;
+    // mock out the fixInsert so we don't do rotations yet.
+    tree.fixInsert = () => {};
 
     root = tree.insert(10);
     pivot = tree.insert(20);
@@ -118,6 +124,8 @@ describe("RedBlackTree", () => {
      */
 
     tree = new RedBlackTree;
+    // mock out the fixInsert so we don't do rotations yet.
+    tree.fixInsert = () => {};
 
     parent = tree.insert(40);
     root = tree.insert(10);
@@ -146,6 +154,9 @@ describe("RedBlackTree", () => {
      */
 
     tree = new RedBlackTree;
+    // mock out the fixInsert so we don't do rotations yet.
+    tree.fixInsert = () => {};
+
 
     parent = tree.insert(40);
     root = tree.insert(10);
@@ -174,6 +185,8 @@ describe("RedBlackTree", () => {
      */
 
     tree = new RedBlackTree;
+    // mock out the fixInsert so we don't do rotations yet.
+    tree.fixInsert = () => {};
 
     parent = tree.insert(40);
     root = tree.insert(10);
@@ -209,6 +222,8 @@ describe("RedBlackTree", () => {
      */
 
     tree = new RedBlackTree;
+    // mock out the fixInsert so we don't do rotations yet.
+    tree.fixInsert = () => {};
     root = tree.insert(10);
     pivot = tree.insert(5);
     child = tree.insert(6);
@@ -236,6 +251,8 @@ describe("RedBlackTree", () => {
      */
 
     tree = new RedBlackTree;
+    // mock out the fixInsert so we don't do rotations yet.
+    tree.fixInsert = () => {};
     parent = tree.insert(30);
     root = tree.insert(10);
     pivot = tree.insert(5);
@@ -264,6 +281,8 @@ describe("RedBlackTree", () => {
      */
 
     tree = new RedBlackTree;
+    // mock out the fixInsert so we don't do rotations yet.
+    tree.fixInsert = () => {};
     parent = tree.insert(1);
     root = tree.insert(10);
     pivot = tree.insert(5);
@@ -278,5 +297,35 @@ describe("RedBlackTree", () => {
     assert(pivot.left.key == 4, `pivot.left is ${pivot.left.key}, not 4`)
     assert(root.left == child, `root.left is ${pivot.left.key}, not ${child.key}`);
     assert(root.right.key == 20, `root.right is ${root.right.key}, not 20`)
+  });
+
+  it ("should correctly perform rotations and coloring", () => {
+    let tree = new RedBlackTree;
+    tree.insert(7);
+    tree.insert(3);
+    tree.insert(18);
+    tree.insert(10);
+    tree.insert(8);
+    tree.insert(11);
+    tree.insert(22);
+    tree.insert(26);
+
+    let idx = 0;
+    let expected = [
+      {key: 3, color: 'black'},
+      {key: 7, color: 'red'},
+      {key: 8, color: 'black'},
+      {key: 10, color: 'black'},
+      {key: 11, color: 'black'},
+      {key: 18, color: 'red'},
+      {key: 22, color: 'black'},
+      {key: 26, color: 'red'},
+    ];
+
+    tree.inorder((node) => {
+      assert(node.key == expected[idx].key, `node.key is ${node.key} but expected ${expected[idx].key}`);
+      assert(node.color == expected[idx].color, `node ${node.key} node.color is ${node.color} but expected ${expected[idx].color}`);
+      idx++;
+    });
   });
 });
