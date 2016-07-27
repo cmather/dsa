@@ -105,6 +105,7 @@ describe("BinaryTree", () => {
   });
 
   it ("should provide inorder traversal", () => {
+    // XXX terrible test!
     let t = new BinaryTree;
     t.root = new BinaryNode(1, 1);
     t.root.left = new BinaryNode(2, 2);
