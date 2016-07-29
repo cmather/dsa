@@ -20,9 +20,9 @@ function constructTree() {
 }
 
 describe("NullNode", () => {
-  it ("should have a null key and be black", () => {
+  it ("should be black and have a null value", () => {
     assert(NullNode.color == 'black', `NullNode.color is ${NullNode.color}`);
-    assert(NullNode.key == null, `NullNode.key is ${NullNode.key}`);
+    assert(NullNode.value == null, `NullNode.value is ${NullNode.value}`);
   });
 });
 
@@ -106,11 +106,11 @@ describe("RedBlackTree", () => {
 
     tree.rotateLeft(root);
 
-    assert(tree.root == pivot, `tree.root is ${tree.root.key}, not ${pivot.key}`)
-    assert(pivot.left == root, `pivot.left is ${pivot.left.key}, not ${root.key}`)
-    assert(pivot.right.key == 30, `pivot.right is ${pivot.right.key}, not 30`)
-    assert(root.right == child, `root.right is ${root.right.key}, not ${child.key}`);
-    assert(root.left.key == 5, `root.left is ${root.left.key}, not 5`)
+    assert(tree.root == pivot, `tree.root is ${tree.root.value}, not ${pivot.value}`)
+    assert(pivot.left == root, `pivot.left is ${pivot.left.value}, not ${root.value}`)
+    assert(pivot.right.value == 30, `pivot.right is ${pivot.right.value}, not 30`)
+    assert(root.right == child, `root.right is ${root.right.value}, not ${child.value}`);
+    assert(root.left.value == 5, `root.left is ${root.left.value}, not 5`)
 
     /* Case 2: node is on left side of parent
      *
@@ -136,11 +136,11 @@ describe("RedBlackTree", () => {
 
     tree.rotateLeft(root);
 
-    assert(tree.root == parent, `tree.root is ${tree.root.key}, not ${parent.key}`)
-    assert(pivot.left == root, `pivot.left is ${pivot.left.key}, not ${root.key}`)
-    assert(pivot.right.key == 30, `pivot.right is ${pivot.right.key}, not 30`)
-    assert(root.right == child, `root.right is ${root.right.key}, not ${child.key}`);
-    assert(root.left.key == 5, `root.left is ${root.left.key}, not 5`)
+    assert(tree.root == parent, `tree.root is ${tree.root.value}, not ${parent.value}`)
+    assert(pivot.left == root, `pivot.left is ${pivot.left.value}, not ${root.value}`)
+    assert(pivot.right.value == 30, `pivot.right is ${pivot.right.value}, not 30`)
+    assert(root.right == child, `root.right is ${root.right.value}, not ${child.value}`);
+    assert(root.left.value == 5, `root.left is ${root.left.value}, not 5`)
 
     /* Case 3: node is on right side of parent
      *
@@ -167,11 +167,11 @@ describe("RedBlackTree", () => {
 
     tree.rotateLeft(root);
 
-    assert(tree.root == parent, `tree.root is ${tree.root.key}, not ${parent.key}`)
-    assert(pivot.left == root, `pivot.left is ${pivot.left.key}, not ${root.key}`)
-    assert(pivot.right.key == 30, `pivot.right is ${pivot.right.key}, not 30`)
-    assert(root.right == child, `root.right is ${root.right.key}, not ${child.key}`);
-    assert(root.left.key == 5, `root.left is ${root.left.key}, not 5`)
+    assert(tree.root == parent, `tree.root is ${tree.root.value}, not ${parent.value}`)
+    assert(pivot.left == root, `pivot.left is ${pivot.left.value}, not ${root.value}`)
+    assert(pivot.right.value == 30, `pivot.right is ${pivot.right.value}, not 30`)
+    assert(root.right == child, `root.right is ${root.right.value}, not ${child.value}`);
+    assert(root.left.value == 5, `root.left is ${root.left.value}, not 5`)
 
     /* Case 4: pivot left child is null
      *
@@ -197,11 +197,11 @@ describe("RedBlackTree", () => {
 
     tree.rotateLeft(root);
 
-    assert(tree.root == parent, `tree.root is ${tree.root.key}, not ${parent.key}`)
-    assert(pivot.left == root, `pivot.left is ${pivot.left.key}, not ${root.key}`)
-    assert(pivot.right.key == 30, `pivot.right is ${pivot.right.key}, not 30`)
-    assert(root.right.value == null, `root.right is ${root.right.key}, not ${child.key}`);
-    assert(root.left.key == 5, `root.left is ${root.left.key}, not 5`)
+    assert(tree.root == parent, `tree.root is ${tree.root.value}, not ${parent.value}`)
+    assert(pivot.left == root, `pivot.left is ${pivot.left.value}, not ${root.value}`)
+    assert(pivot.right.value == 30, `pivot.right is ${pivot.right.value}, not 30`)
+    assert(root.right.value == null, `root.right is ${root.right.value}, not ${child.value}`);
+    assert(root.left.value == 5, `root.left is ${root.left.value}, not 5`)
   });
 
   it ("should provide rotateRight", () => {
@@ -232,11 +232,11 @@ describe("RedBlackTree", () => {
 
     tree.rotateRight(root);
 
-    assert(tree.root == pivot, `tree.root is ${tree.root.key}, not ${pivot.key}`)
-    assert(pivot.right == root, `pivot.right is ${pivot.right.key}, not ${root.key}`)
-    assert(pivot.left.key == 1, `pivot.left is ${pivot.left.key}, not 1`)
-    assert(root.left == child, `root.left is ${pivot.left.key}, not ${child.key}`);
-    assert(root.right.key == 20, `root.right is ${root.right.key}, not 20`)
+    assert(tree.root == pivot, `tree.root is ${tree.root.value}, not ${pivot.value}`)
+    assert(pivot.right == root, `pivot.right is ${pivot.right.value}, not ${root.value}`)
+    assert(pivot.left.value == 1, `pivot.left is ${pivot.left.value}, not 1`)
+    assert(root.left == child, `root.left is ${pivot.left.value}, not ${child.value}`);
+    assert(root.right.value == 20, `root.right is ${root.right.value}, not 20`)
 
     /*
      * Case 2: node is on the left side of the parent
@@ -262,11 +262,11 @@ describe("RedBlackTree", () => {
 
     tree.rotateRight(root);
 
-    assert(tree.root == parent, `tree.root is ${tree.root.key}, not ${parent.key}`)
-    assert(pivot.right == root, `pivot.right is ${pivot.right.key}, not ${root.key}`)
-    assert(pivot.left.key == 1, `pivot.left is ${pivot.left.key}, not 1`)
-    assert(root.left == child, `root.left is ${pivot.left.key}, not ${child.key}`);
-    assert(root.right.key == 20, `root.right is ${root.right.key}, not 20`)
+    assert(tree.root == parent, `tree.root is ${tree.root.value}, not ${parent.value}`)
+    assert(pivot.right == root, `pivot.right is ${pivot.right.value}, not ${root.value}`)
+    assert(pivot.left.value == 1, `pivot.left is ${pivot.left.value}, not 1`)
+    assert(root.left == child, `root.left is ${pivot.left.value}, not ${child.value}`);
+    assert(root.right.value == 20, `root.right is ${root.right.value}, not 20`)
 
     /*
      * Case 3: node is on the right side of the parent
@@ -292,11 +292,11 @@ describe("RedBlackTree", () => {
 
     tree.rotateRight(root);
 
-    assert(tree.root == parent, `tree.root is ${tree.root.key}, not ${parent.key}`)
-    assert(pivot.right == root, `pivot.right is ${pivot.right.key}, not ${root.key}`)
-    assert(pivot.left.key == 4, `pivot.left is ${pivot.left.key}, not 4`)
-    assert(root.left == child, `root.left is ${pivot.left.key}, not ${child.key}`);
-    assert(root.right.key == 20, `root.right is ${root.right.key}, not 20`)
+    assert(tree.root == parent, `tree.root is ${tree.root.value}, not ${parent.value}`)
+    assert(pivot.right == root, `pivot.right is ${pivot.right.value}, not ${root.value}`)
+    assert(pivot.left.value == 4, `pivot.left is ${pivot.left.value}, not 4`)
+    assert(root.left == child, `root.left is ${pivot.left.value}, not ${child.value}`);
+    assert(root.right.value == 20, `root.right is ${root.right.value}, not 20`)
   });
 
   it ("should correctly perform rotations and coloring", () => {
@@ -312,19 +312,19 @@ describe("RedBlackTree", () => {
 
     let idx = 0;
     let expected = [
-      {key: 3, color: 'black'},
-      {key: 7, color: 'red'},
-      {key: 8, color: 'black'},
-      {key: 10, color: 'black'},
-      {key: 11, color: 'black'},
-      {key: 18, color: 'red'},
-      {key: 22, color: 'black'},
-      {key: 26, color: 'red'},
+      {value: 3, color: 'black'},
+      {value: 7, color: 'red'},
+      {value: 8, color: 'black'},
+      {value: 10, color: 'black'},
+      {value: 11, color: 'black'},
+      {value: 18, color: 'red'},
+      {value: 22, color: 'black'},
+      {value: 26, color: 'red'},
     ];
 
     tree.inorder((node) => {
-      assert(node.key == expected[idx].key, `node.key is ${node.key} but expected ${expected[idx].key}`);
-      assert(node.color == expected[idx].color, `node ${node.key} node.color is ${node.color} but expected ${expected[idx].color}`);
+      assert(node.value == expected[idx].value, `node.value is ${node.value} but expected ${expected[idx].value}`);
+      assert(node.color == expected[idx].color, `node ${node.value} node.color is ${node.color} but expected ${expected[idx].color}`);
       idx++;
     });
   });

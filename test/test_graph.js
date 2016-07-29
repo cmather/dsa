@@ -46,7 +46,7 @@ describe("Graph", () => {
   it ("should allow adding undirected edges", () => {
     let g = new Graph;
     g.addEdge('a', 'b');
-    assert(g.size == 2);
+    assert(g.length == 2);
     assert(g.vertices[0].value == 'a');
     assert(g.vertices[0].degree == 1);
     assert(g.vertices[0].edges[0].to.value == 'b');
@@ -58,7 +58,7 @@ describe("Graph", () => {
   it ("should allow adding directed edges", () => {
     let g = new Graph({directed: true});
     g.addEdge('a', 'b');
-    assert(g.size == 1);
+    assert(g.length == 1);
     assert(g.vertices[0].value == 'a');
     assert(g.vertices[0].degree == 1);
     assert(g.vertices[0].edges[0].to.value == 'b');
@@ -67,7 +67,7 @@ describe("Graph", () => {
   it ("should allow adding vertices", () => {
     let g = new Graph();
     g.addVertex('a');
-    assert(g.size == 1);
+    assert(g.length == 1);
     assert(g.vertices[0].value == 'a');
   });
 
