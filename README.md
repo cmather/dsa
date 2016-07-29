@@ -15,11 +15,11 @@ A collection of data structures and algorithms for learning, practice and fun.
 > npm test
 ```
 
-## Hot Reload Web Server
+## Start Hot Reloading Web Server
 ```bash
 > npm start
 ```
+Visit http://localhost:8080 to play with dsa in the browsesr.
 
 You can find the application javascript file in `test/app/index.js`. This file
-will be compiled, with source maps inline, automatically by webpack and
-available to play from the browser debugger.
+will be compiled, with source maps inline, automatically by webpack.
