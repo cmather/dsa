@@ -1,5 +1,6 @@
 import assert from 'assert';
-import MaxHeap, {HeapNode} from '../lib/max_heap';
+import {HeapNode} from '../lib/binary_heap';
+import MaxHeap from '../lib/max_heap';
 
 describe("MaxHeap", () => {
   it ("should construct", () => {
