@@ -79,4 +79,13 @@ describe("MaxHeap", () => {
     node.update(10);
     assert.equal(node.index, 1);
   });
+
+  it ("should reset heap and index properties on extract", () => {
+    let heap = new MaxHeap;
+    let node = heap.insert(10);
+    heap.extract();
+    assert.equal(node.index, null);
+    assert.equal(node.heap, null);
+    assert.equal(node.update(30), false);
+  });
 });
