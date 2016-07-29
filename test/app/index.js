@@ -1,20 +1,22 @@
+import Queue from '../../lib/queue';
+import Stack from '../../lib/stack';
+import Graph from '../../lib/graph';
+import {bfs, dfs} from '../../lib/graph_search';
+import MinHeap from '../../lib/min_heap';
+import MaxHeap from '../../lib/max_heap';
+import MinPriorityQueue from '../../lib/min_priority_queue';
 import BinarySearchTree from '../../lib/binary_search_tree';
 import RedBlackTree, {NullNode} from '../../lib/red_black_tree';
 
 window.dsa = {
+  Queue: Queue,
+  Stack: Stack,
+  Graph: Graph,
+  bfs: bfs,
+  dfs: dfs,
   BinarySearchTree: BinarySearchTree,
   RedBlackTree: RedBlackTree,
-  NullNode
+  MinHeap: MinHeap,
+  MaxHeap: MaxHeap,
+  MinPriorityQueue: MinPriorityQueue
 };
-
-window.tree = new RedBlackTree;
-tree.insert(7);
-tree.insert(3);
-tree.insert(18);
-tree.insert(10);
-tree.insert(8);
-tree.insert(11);
-tree.insert(22);
-tree.insert(26);
-
-tree.inorder((node) => console.log(node.key));
