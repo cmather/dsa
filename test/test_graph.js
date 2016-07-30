@@ -71,20 +71,42 @@ describe("Graph", () => {
     assert(g.vertices[0].value == 'a');
   });
 
-  it ("should allow iterating vertices", () => {
-    let g = new Graph();
+  it ("should allow iterating root vertices", () => {
+    let g = new Graph({directed: true});
     g.addVertex('a');
     g.addVertex('b');
-    g.addVertex('c');
+    let vertex = g.addVertex('c');
+    vertex.addEdge('d');
 
     let results = [];
     for (var v of g) {
       results.push(v && v.value);
     }
 
-    assert(results.length == 3);
-    assert(results[0] == 'a');
-    assert(results[1] == 'b');
-    assert(results[2] == 'c');
+    assert.equal(results.length, 3);
+    assert.equal(g.length, 3);
+    assert.equal(results[0], 'a');
+    assert.equal(results[1], 'b');
+    assert.equal(results[2], 'c');
+  });
+
+  it ("should provide allVertices to iterate over all vertices in graph", () => {
+    let g = new Graph({directed: true});
+    g.addVertex('a');
+    g.addVertex('b');
+    let vertex = g.addVertex('c');
+    vertex.addEdge('d');
+
+    let results = [];
+    for (var v of g.allVertices()) {
+      results.push(v && v.value);
+    }
+
+    assert.equal(results.length, 4);
+    assert.equal(g.length, 3);
+    assert.equal(results[0], 'a');
+    assert.equal(results[1], 'b');
+    assert.equal(results[2], 'c');
+    assert.equal(results[3], 'd');
   });
 });
