@@ -7,6 +7,7 @@ import MaxHeap from '../../lib/max_heap';
 import MinPriorityQueue from '../../lib/min_priority_queue';
 import BinarySearchTree from '../../lib/binary_search_tree';
 import RedBlackTree, {NullNode} from '../../lib/red_black_tree';
+import Dijkstra, {shortestPath} from '../../lib/dijkstra';
 
 window.dsa = {
   Queue: Queue,
@@ -18,5 +19,7 @@ window.dsa = {
   RedBlackTree: RedBlackTree,
   MinHeap: MinHeap,
   MaxHeap: MaxHeap,
-  MinPriorityQueue: MinPriorityQueue
+  MinPriorityQueue: MinPriorityQueue,
+  Dijkstra: Dijkstra,
+  shortestPath: shortestPath
 };
