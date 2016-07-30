@@ -1,5 +1,5 @@
 import assert from 'assert';
-import RedBlackTree, {RedBlackTreeNode, NullNode} from '../lib/red_black_tree';
+import RedBlackTree, {RedBlackTreeNode, RBNullNode} from '../lib/red_black_tree';
 
 function constructTree() {
   let tree = new RedBlackTree;
@@ -19,10 +19,10 @@ function constructTree() {
   return tree;
 }
 
-describe("NullNode", () => {
+describe("RBNullNode", () => {
   it ("should be black and have a null value", () => {
-    assert(NullNode.color == 'black', `NullNode.color is ${NullNode.color}`);
-    assert(NullNode.value == null, `NullNode.value is ${NullNode.value}`);
+    assert(RBNullNode.color == 'black', `RBNullNode.color is ${RBNullNode.color}`);
+    assert(RBNullNode.value == null, `RBNullNode.value is ${RBNullNode.value}`);
   });
 });
 
@@ -32,8 +32,8 @@ describe("RedBlackTreeNode", () => {
     // mock out the fixInsert so we don't do rotations yet.
     t.fixInsert = () => {};
     let node = t.insert(5);
-    assert(node.left == NullNode);
-    assert(node.right == NullNode);
+    assert(node.left == RBNullNode);
+    assert(node.right == RBNullNode);
     assert(node.color == 'red');
   });
 });
@@ -191,7 +191,7 @@ describe("RedBlackTree", () => {
     parent = tree.insert(40);
     root = tree.insert(10);
     pivot = tree.insert(20);
-    child = pivot.left; // NullNode
+    child = pivot.left; // RBNullNode
     tree.insert(5);
     tree.insert(30);
 
