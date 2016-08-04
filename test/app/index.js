@@ -29,5 +29,16 @@ window.dsa = {
   phoneWordCombos: phoneWordCombos
 };
 
-let result = phoneWordCombos(2345678);
-console.log(result);
+let words = phoneWordCombos(2345678);
+let index = {};
+
+words.forEach((word) => {
+  let key = word.join('');
+
+  if (index[key])
+    throw new Error(`duplicate ${key}`);
+  else
+    index[key] = true;
+});
+
+console.log(words);
