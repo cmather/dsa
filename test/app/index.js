@@ -9,6 +9,7 @@ import BinarySearchTree from '../../lib/binary_search_tree';
 import RedBlackTree, {NullNode} from '../../lib/red_black_tree';
 import Dijkstra, {shortestPath} from '../../lib/dijkstra';
 import justifyText, {JustifyText} from '../../lib/justify_text';
+import phoneWordCombos from '../../lib/phone_word_combos';
 
 window.dsa = {
   Queue: Queue,
@@ -24,22 +25,9 @@ window.dsa = {
   Dijkstra: Dijkstra,
   shortestPath: shortestPath,
   JustifyText: JustifyText,
-  justifyText: justifyText
+  justifyText: justifyText,
+  phoneWordCombos: phoneWordCombos
 };
 
-window.text = "one two three four five";
-window.comp = justifyText(text, {pageWidth: 20});
-
-let idx = 0, words, next;
-let lines = [];
-
-while (next = comp.parents[idx]) {
-  lines.push(comp.words.slice(idx, next).join(''));
-  idx = next;
-}
-
-for (let line of lines) {
-  console.log(line);
-}
-console.log(lines);
-console.log(`n: ${comp.length}`);
+let result = phoneWordCombos(2345678);
+console.log(result);
