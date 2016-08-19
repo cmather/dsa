@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {bubbleSort, selectionSort, mergeSort} from '../lib/sort';
+import {bubbleSort, selectionSort, mergeSort, quickSort} from '../lib/sort';
 
 /**
  * See:
@@ -72,6 +72,19 @@ describe('mergeSort', () => {
     // perform 5 trials
     for (let i = 0; i < 5; i++) {
       let result = mergeSort(shuffle(input));
+      assert(isArrayEqual(result, expected), `expected ${expected} but got ${result}`);
+    }
+  });
+});
+
+describe('quickSort', () => {
+  it('should sort correctly', () => {
+    let input = [5,4,3,2,1];
+    let expected = [1,2,3,4,5];
+
+    // perform 5 trials
+    for (let i = 0; i < 5; i++) {
+      let result = quickSort(shuffle(input));
       assert(isArrayEqual(result, expected), `expected ${expected} but got ${result}`);
     }
   });
