@@ -299,7 +299,7 @@ describe("RedBlackTree", () => {
     assert(root.right.value == 20, `root.right is ${root.right.value}, not 20`)
   });
 
-  it ("should correctly perform rotations and coloring", () => {
+  it ("should correctly perform rotations and coloring on insert", () => {
     let tree = new RedBlackTree;
     tree.insert(7);
     tree.insert(3);
@@ -320,6 +320,38 @@ describe("RedBlackTree", () => {
       {value: 18, color: 'red'},
       {value: 22, color: 'black'},
       {value: 26, color: 'red'},
+    ];
+
+    tree.inorder((node) => {
+      assert(node.value == expected[idx].value, `node.value is ${node.value} but expected ${expected[idx].value}`);
+      assert(node.color == expected[idx].color, `node ${node.value} node.color is ${node.color} but expected ${expected[idx].color}`);
+      idx++;
+    });
+  });
+
+  it ("should provide remove", () => {
+    let tree = new RedBlackTree;
+    tree.insert(7);
+    tree.insert(3);
+    tree.insert(18);
+    tree.insert(10);
+    tree.insert(8);
+    tree.insert(11);
+    tree.insert(22);
+    tree.insert(26);
+
+    tree.remove(18);
+    assert.equal(tree.find(18), null);
+
+    let idx = 0;
+    let expected = [
+      {value: 3, color: 'black'},
+      {value: 7, color: 'red'},
+      {value: 8, color: 'black'},
+      {value: 10, color: 'black'},
+      {value: 11, color: 'black'},
+      {value: 22, color: 'red'},
+      {value: 26, color: 'black'},
     ];
 
     tree.inorder((node) => {
