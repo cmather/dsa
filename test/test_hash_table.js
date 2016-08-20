@@ -39,7 +39,7 @@ describe("HashTable", () => {
     assert.equal(ht.get(4), 'four');
   });
 
-  it ("chain keys on collisions", () => {
+  it ("should chain keys on collisions", () => {
     let ht = new HashTable({size: 1});
 
     ht.set(1, 'one', false);
