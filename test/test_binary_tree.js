@@ -1,6 +1,26 @@
 import assert from 'assert';
 import BinaryTree, {BinaryNode} from '../lib/binary_tree';
 
+function makeTree() {
+  let t = new BinaryTree;
+  t.root = new BinaryNode(5);
+
+  t.root.left = new BinaryNode(3);
+  t.root.left.left = new BinaryNode(1);
+  t.root.left.right = new BinaryNode(2);
+
+  t.root.right = new BinaryNode(10);
+  t.root.right.left = new BinaryNode(6);
+  t.root.right.right = new BinaryNode(11);
+
+  return {
+    tree: t,
+    inorder: [1, 3, 2, 5, 6, 10, 11],
+    preorder: [5, 3, 1, 2, 10, 6, 11],
+    postorder: [1, 2, 3, 6, 11, 10, 5]
+  };
+}
+
 describe("BinaryNode", () => {
   it ("should have degree of two", () => {
     let n = new BinaryNode(null);
@@ -84,45 +104,44 @@ describe("BinaryTree", () => {
     assert(t.root.value == 'a');
   });
 
-  it ("should provide preorder traversal", () => {
-    let t = new BinaryTree;
-    t.root = new BinaryNode(1);
-    t.root.left = new BinaryNode(2);
-    t.root.right = new BinaryNode(3);
-
-    let results = [];
-    t.preorder((node) => results.push(node.value));
-    assert(results.length == 3);
-    assert(results[0] == 1);
-    assert(results[1] == 2);
-    assert(results[2] == 3);
+  it ("should provide inorder, preorder and postorder traversal", () => {
+    ['inorder', 'preorder', 'postorder'].forEach((traversalType) => {
+      let testData = makeTree();
+      let actual = [];
+      testData.tree[traversalType]((node) => actual.push(node.value));
+      actual.forEach((val, idx) => {
+        assert.equal(val, testData[traversalType][idx]);
+      });
+    });
   });
 
-  it ("should provide inorder traversal", () => {
-    let t = new BinaryTree;
-    t.root = new BinaryNode(1);
-    t.root.left = new BinaryNode(2);
-    t.root.right = new BinaryNode(3);
+  it ("should provide an entries generator", () => {
+    let testData = makeTree();
+    let iterator = testData.tree.entries();
+    let current = iterator.next();
+    let actual = [];
 
-    let results = [];
-    t.inorder((node) => results.push(node.value));
-    assert(results.length == 3);
-    assert(results[0] == 2);
-    assert(results[1] == 1);
-    assert(results[2] == 3);
+    while (!current.done) {
+      actual.push(current.value);
+      current = iterator.next();
+    }
+
+    actual.forEach((val, idx) => {
+      assert.equal(val, testData.inorder[idx]);
+    });
   });
 
-  it ("should provide postorder traversal", () => {
-    let t = new BinaryTree;
-    t.root = new BinaryNode(1);
-    t.root.left = new BinaryNode(2);
-    t.root.right = new BinaryNode(3);
+  it ("should provide forEach method for inorder traversal", () => {
+    let testData = makeTree();
+    let actual = [];
 
-    let results = [];
-    t.postorder((node) => results.push(node.value));
-    assert(results.length == 3);
-    assert(results[0] == 2);
-    assert(results[1] == 3);
-    assert(results[2] == 1);
+    testData.tree.forEach((value, idx) => {
+      actual.push([idx, value]);
+    });
+
+    actual.forEach((val, idx) => {
+      assert.equal(val[0], idx);
+      assert.equal(val[1], testData.inorder[idx]);
+    });
   });
 });

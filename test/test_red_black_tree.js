@@ -1,5 +1,6 @@
 import assert from 'assert';
 import RedBlackTree, {RedBlackTreeNode, RBNullNode} from '../lib/red_black_tree';
+import compare from '../lib/compare';
 
 function constructTree() {
   let tree = new RedBlackTree;
@@ -359,5 +360,11 @@ describe("RedBlackTree", () => {
       assert(node.color == expected[idx].color, `node ${node.value} node.color is ${node.color} but expected ${expected[idx].color}`);
       idx++;
     });
+  });
+
+  it ("should provide has", () => {
+    let tree = new RedBlackTree;
+    tree.insert(5);
+    assert(tree.has(5), `expected has(5) to return true`);
   });
 });
