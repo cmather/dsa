@@ -144,4 +144,18 @@ describe("BinaryTree", () => {
       assert.equal(val[1], testData.inorder[idx]);
     });
   });
+
+  it ("should provide an inorder iterator", () => {
+    let testData = makeTree();
+    let actual = [];
+    let value;
+
+    for (value of testData.tree) actual.push(value);
+
+    console.log(actual);
+
+    actual.forEach((val, idx) => {
+      assert.equal(val, testData.inorder[idx]);
+    });
+  });
 });
