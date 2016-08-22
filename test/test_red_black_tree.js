@@ -1,5 +1,5 @@
 import assert from 'assert';
-import RedBlackTree, {RedBlackTreeNode, RBNullNode} from '../lib/red_black_tree';
+import RedBlackTree, {RedBlackTreeNode} from '../lib/red_black_tree';
 import compare from '../lib/compare';
 
 function constructTree() {
@@ -7,35 +7,28 @@ function constructTree() {
   // mock out the fixInsert method so we can test without coloring fixes.
   tree.fixInsert = () => {};
 
-  tree.insert(5);
+  tree.add(5);
 
-  tree.insert(2);
-  tree.insert(1);
-  tree.insert(3);
+  tree.add(2);
+  tree.add(1);
+  tree.add(3);
 
-  tree.insert(8);
-  tree.insert(7);
-  tree.insert(9);
+  tree.add(8);
+  tree.add(7);
+  tree.add(9);
 
   return tree;
 }
-
-describe("RBNullNode", () => {
-  it ("should be black and have a null value", () => {
-    assert(RBNullNode.color == 'black', `RBNullNode.color is ${RBNullNode.color}`);
-    assert(RBNullNode.value == null, `RBNullNode.value is ${RBNullNode.value}`);
-  });
-});
 
 describe("RedBlackTreeNode", () => {
   it ("should set correct default left, right and color", () => {
     let t = new RedBlackTree;
     // mock out the fixInsert so we don't do rotations yet.
     t.fixInsert = () => {};
-    let node = t.insert(5);
-    assert(node.left == RBNullNode);
-    assert(node.right == RBNullNode);
-    assert(node.color == 'red');
+    let node = t.add(5);
+    assert.equal(node.left, t.nullNode());
+    assert.equal(node.right, t.nullNode());
+    assert.equal(node.color, 'red');
   });
 });
 
@@ -48,15 +41,15 @@ describe("RedBlackTree", () => {
     let tree = new RedBlackTree;
 
     // root
-    let result = tree.insert(5);
+    let result = tree.add(5);
     assert(result instanceof RedBlackTreeNode);
 
     // left
-    result = tree.insert(4);
+    result = tree.add(4);
     assert(result instanceof RedBlackTreeNode);
 
     // right
-    result = tree.insert(6);
+    result = tree.add(6);
     assert(result instanceof RedBlackTreeNode);
   });
 
@@ -98,12 +91,12 @@ describe("RedBlackTree", () => {
     // mock out the fixInsert so we don't do rotations yet.
     tree.fixInsert = () => {};
 
-    root = tree.insert(10);
-    pivot = tree.insert(20);
-    child = tree.insert(15);
+    root = tree.add(10);
+    pivot = tree.add(20);
+    child = tree.add(15);
 
-    tree.insert(5);
-    tree.insert(30);
+    tree.add(5);
+    tree.add(30);
 
     tree.rotateLeft(root);
 
@@ -128,12 +121,12 @@ describe("RedBlackTree", () => {
     // mock out the fixInsert so we don't do rotations yet.
     tree.fixInsert = () => {};
 
-    parent = tree.insert(40);
-    root = tree.insert(10);
-    pivot = tree.insert(20);
-    child = tree.insert(15);
-    tree.insert(5);
-    tree.insert(30);
+    parent = tree.add(40);
+    root = tree.add(10);
+    pivot = tree.add(20);
+    child = tree.add(15);
+    tree.add(5);
+    tree.add(30);
 
     tree.rotateLeft(root);
 
@@ -159,12 +152,12 @@ describe("RedBlackTree", () => {
     tree.fixInsert = () => {};
 
 
-    parent = tree.insert(40);
-    root = tree.insert(10);
-    pivot = tree.insert(20);
-    child = tree.insert(15);
-    tree.insert(5);
-    tree.insert(30);
+    parent = tree.add(40);
+    root = tree.add(10);
+    pivot = tree.add(20);
+    child = tree.add(15);
+    tree.add(5);
+    tree.add(30);
 
     tree.rotateLeft(root);
 
@@ -189,12 +182,12 @@ describe("RedBlackTree", () => {
     // mock out the fixInsert so we don't do rotations yet.
     tree.fixInsert = () => {};
 
-    parent = tree.insert(40);
-    root = tree.insert(10);
-    pivot = tree.insert(20);
+    parent = tree.add(40);
+    root = tree.add(10);
+    pivot = tree.add(20);
     child = pivot.left; // RBNullNode
-    tree.insert(5);
-    tree.insert(30);
+    tree.add(5);
+    tree.add(30);
 
     tree.rotateLeft(root);
 
@@ -225,11 +218,11 @@ describe("RedBlackTree", () => {
     tree = new RedBlackTree;
     // mock out the fixInsert so we don't do rotations yet.
     tree.fixInsert = () => {};
-    root = tree.insert(10);
-    pivot = tree.insert(5);
-    child = tree.insert(6);
-    tree.insert(1);
-    tree.insert(20);
+    root = tree.add(10);
+    pivot = tree.add(5);
+    child = tree.add(6);
+    tree.add(1);
+    tree.add(20);
 
     tree.rotateRight(root);
 
@@ -254,12 +247,12 @@ describe("RedBlackTree", () => {
     tree = new RedBlackTree;
     // mock out the fixInsert so we don't do rotations yet.
     tree.fixInsert = () => {};
-    parent = tree.insert(30);
-    root = tree.insert(10);
-    pivot = tree.insert(5);
-    child = tree.insert(6);
-    tree.insert(1);
-    tree.insert(20);
+    parent = tree.add(30);
+    root = tree.add(10);
+    pivot = tree.add(5);
+    child = tree.add(6);
+    tree.add(1);
+    tree.add(20);
 
     tree.rotateRight(root);
 
@@ -284,12 +277,12 @@ describe("RedBlackTree", () => {
     tree = new RedBlackTree;
     // mock out the fixInsert so we don't do rotations yet.
     tree.fixInsert = () => {};
-    parent = tree.insert(1);
-    root = tree.insert(10);
-    pivot = tree.insert(5);
-    child = tree.insert(6);
-    tree.insert(4);
-    tree.insert(20);
+    parent = tree.add(1);
+    root = tree.add(10);
+    pivot = tree.add(5);
+    child = tree.add(6);
+    tree.add(4);
+    tree.add(20);
 
     tree.rotateRight(root);
 
@@ -302,14 +295,14 @@ describe("RedBlackTree", () => {
 
   it ("should correctly perform rotations and coloring on insert", () => {
     let tree = new RedBlackTree;
-    tree.insert(7);
-    tree.insert(3);
-    tree.insert(18);
-    tree.insert(10);
-    tree.insert(8);
-    tree.insert(11);
-    tree.insert(22);
-    tree.insert(26);
+    tree.add(7);
+    tree.add(3);
+    tree.add(18);
+    tree.add(10);
+    tree.add(8);
+    tree.add(11);
+    tree.add(22);
+    tree.add(26);
 
     let idx = 0;
     let expected = [
@@ -332,14 +325,14 @@ describe("RedBlackTree", () => {
 
   it ("should provide remove", () => {
     let tree = new RedBlackTree;
-    tree.insert(7);
-    tree.insert(3);
-    tree.insert(18);
-    tree.insert(10);
-    tree.insert(8);
-    tree.insert(11);
-    tree.insert(22);
-    tree.insert(26);
+    tree.add(7);
+    tree.add(3);
+    tree.add(18);
+    tree.add(10);
+    tree.add(8);
+    tree.add(11);
+    tree.add(22);
+    tree.add(26);
 
     tree.remove(18);
     assert.equal(tree.find(18), null);
@@ -364,7 +357,7 @@ describe("RedBlackTree", () => {
 
   it ("should provide has", () => {
     let tree = new RedBlackTree;
-    tree.insert(5);
+    tree.add(5);
     assert(tree.has(5), `expected has(5) to return true`);
   });
 });

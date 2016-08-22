@@ -5,15 +5,15 @@ import BinarySearchTree from '../lib/binary_search_tree';
 function constructTree() {
   let tree = new BinarySearchTree;
 
-  tree.insert(5);
+  tree.add(5);
 
-  tree.insert(2);
-  tree.insert(1);
-  tree.insert(3);
+  tree.add(2);
+  tree.add(1);
+  tree.add(3);
 
-  tree.insert(8);
-  tree.insert(7);
-  tree.insert(9);
+  tree.add(8);
+  tree.add(7);
+  tree.add(9);
 
   return tree;
 }
@@ -23,23 +23,23 @@ describe("BinarySearchTree", () => {
     let t = new BinarySearchTree;
   });
 
-  it ("should return a node on insert", () => {
+  it ("should return a node on add", () => {
     let tree = new BinarySearchTree;
 
     // root
-    let result = tree.insert(5);
+    let result = tree.add(5);
     assert(result instanceof BinaryNode);
 
     // left
-    result = tree.insert(4);
+    result = tree.add(4);
     assert(result instanceof BinaryNode);
 
     // right
-    result = tree.insert(6);
+    result = tree.add(6);
     assert(result instanceof BinaryNode);
   });
 
-  it ("should insert in the correct position", () => {
+  it ("should add in the correct position", () => {
     let tree = constructTree();
 
     assert(tree.root.value == 5);
@@ -68,9 +68,9 @@ describe("BinarySearchTree", () => {
   it ("should allow transplant of parent's left child", () => {
     let tree = new BinarySearchTree;
 
-    let root = tree.insert(5);
-    let left = tree.insert(2);
-    let leftRight = tree.insert(3);
+    let root = tree.add(5);
+    let left = tree.add(2);
+    let leftRight = tree.add(3);
     tree.transplant(left, leftRight);
     assert(leftRight.parent == root);
     assert(root.left == leftRight);
@@ -79,9 +79,9 @@ describe("BinarySearchTree", () => {
   it ("should allow transplant of parent's right child", () => {
     let tree = new BinarySearchTree;
 
-    let root = tree.insert(5);
-    let right = tree.insert(8);
-    let rightLeft = tree.insert(6);
+    let root = tree.add(5);
+    let right = tree.add(8);
+    let rightLeft = tree.add(6);
     tree.transplant(right, rightLeft);
     assert(rightLeft.parent == root);
     assert(root.right == rightLeft);
@@ -96,9 +96,9 @@ describe("BinarySearchTree", () => {
 
   it ("should allow remove where node has only a left child", () => {
     let tree = new BinarySearchTree;
-    tree.insert(10);
-    tree.insert(5);
-    tree.insert(2);
+    tree.add(10);
+    tree.add(5);
+    tree.add(2);
     let node = tree.remove(5);
     assert(node);
     assert(tree.root.left.value == 2);
@@ -106,9 +106,9 @@ describe("BinarySearchTree", () => {
 
   it ("should allow remove where node has only a right child", () => {
     let tree = new BinarySearchTree;
-    tree.insert(10);
-    tree.insert(5);
-    tree.insert(7);
+    tree.add(10);
+    tree.add(5);
+    tree.add(7);
     let node = tree.remove(5);
     assert(node);
     assert(tree.root.left.value == 7);
@@ -116,10 +116,10 @@ describe("BinarySearchTree", () => {
 
   it ("should allow remove where node has a left and right child", () => {
     let tree = new BinarySearchTree;
-    tree.insert(10);
-    tree.insert(5);
-    tree.insert(3);
-    tree.insert(7);
+    tree.add(10);
+    tree.add(5);
+    tree.add(3);
+    tree.add(7);
     let node = tree.remove(5);
     assert(node);
     assert(tree.root.left.value == 7);
@@ -129,13 +129,13 @@ describe("BinarySearchTree", () => {
   it ("should allow remove where node has a left child and right subtree", () => {
     let tree = new BinarySearchTree;
 
-    tree.insert(10);
-    tree.insert(5);
-    tree.insert(3);
-    tree.insert(8);
-    tree.insert(6);
-    tree.insert(7);
-    tree.insert(9);
+    tree.add(10);
+    tree.add(5);
+    tree.add(3);
+    tree.add(8);
+    tree.add(6);
+    tree.add(7);
+    tree.add(9);
 
     let node = tree.remove(5);
     assert(node);

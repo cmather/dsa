@@ -3,15 +3,15 @@ import BinaryTree, {BinaryNode} from '../lib/binary_tree';
 
 function makeTree() {
   let t = new BinaryTree;
-  t.root = new BinaryNode(5);
+  t.root = new BinaryNode(t, 5);
 
-  t.root.left = new BinaryNode(3);
-  t.root.left.left = new BinaryNode(1);
-  t.root.left.right = new BinaryNode(2);
+  t.root.left = new BinaryNode(t, 3);
+  t.root.left.left = new BinaryNode(t, 1);
+  t.root.left.right = new BinaryNode(t, 2);
 
-  t.root.right = new BinaryNode(10);
-  t.root.right.left = new BinaryNode(6);
-  t.root.right.right = new BinaryNode(11);
+  t.root.right = new BinaryNode(t, 10);
+  t.root.right.left = new BinaryNode(t, 6);
+  t.root.right.right = new BinaryNode(t, 11);
 
   return {
     tree: t,
@@ -23,24 +23,31 @@ function makeTree() {
 
 describe("BinaryNode", () => {
   it ("should have degree of two", () => {
-    let n = new BinaryNode(null);
+    let t = new BinaryTree;
+    let n = new BinaryNode(t, null, null);
     assert(n.degree == 2);
   });
 
   it ("should have left, right and parent properties", () => {
-    let n = new BinaryNode('root');
-    assert(n.left == null);
-    assert(n.right == null);
-    n.left = new BinaryNode('a');
-    n.right = new BinaryNode('b');
-    assert(n.left.value == 'a');
-    assert(n.right.value == 'b');
-    assert(n.left.parent == n);
-    assert(n.right.parent == n);
+    let t = new BinaryTree;
+    let n = new BinaryNode(t, 'root');
+
+    assert.equal(n.left, null, 'left should be null');
+    assert.equal(n.right, null, 'right should be null');
+
+    n.left = new BinaryNode(t, 'a');
+    n.right = new BinaryNode(t, 'b');
+
+    assert.equal(n.left.value, 'a');
+    assert.equal(n.right.value, 'b');
+
+    assert.equal(n.left.parent, n);
+    assert.equal(n.right.parent, n);
   });
 
   it ("should not allow adding edges", () => {
-    let n = new BinaryNode(1);
+    let t = new BinaryTree;
+    let n = new BinaryNode(t, 1);
     let thrown = false;
     try {
       n.addEdge('b');
@@ -58,25 +65,13 @@ describe("BinaryTree", () => {
 
   it ("should not allow adding edges", () => {
     let t = new BinaryTree;
+    let a = new BinaryNode(t, 'a');
+    let b = new BinaryNode(t, 'b');
 
     let thrown = false;
 
     try {
-      t.addEdge('a', 'b');
-    } catch(e) {
-      thrown = true;
-    }
-
-    assert(thrown);
-  });
-
-  it ("should not allow adding vertices", () => {
-    let t = new BinaryTree;
-
-    let thrown = false;
-
-    try {
-      t.addVertex('a');
+      t.addEdge(a, b);
     } catch(e) {
       thrown = true;
     }
@@ -100,7 +95,7 @@ describe("BinaryTree", () => {
 
   it ("should allow setting the root", () => {
     let t = new BinaryTree;
-    t.root = new BinaryNode('a');
+    t.root = new BinaryNode(t, 'a');
     assert(t.root.value == 'a');
   });
 
@@ -115,9 +110,9 @@ describe("BinaryTree", () => {
     });
   });
 
-  it ("should provide an entries generator", () => {
+  it ("should override the nodes generator for iterating over the tree in order", () => {
     let testData = makeTree();
-    let iterator = testData.tree.entries();
+    let iterator = testData.tree.nodes();
     let current = iterator.next();
     let actual = [];
 
@@ -145,14 +140,12 @@ describe("BinaryTree", () => {
     });
   });
 
-  it ("should provide an inorder iterator", () => {
+  it ("should provide a for of iterator that traverses in order", () => {
     let testData = makeTree();
     let actual = [];
     let value;
 
     for (value of testData.tree) actual.push(value);
-
-    console.log(actual);
 
     actual.forEach((val, idx) => {
       assert.equal(val, testData.inorder[idx]);
