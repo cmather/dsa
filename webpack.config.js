@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './test/app/index.js',
+  entry: ['babel-polyfill', './test/app/index.js'],
   devtool: 'inline-source-map',
   module: {
     loaders: [{
