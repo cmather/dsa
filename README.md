@@ -23,3 +23,7 @@ Visit http://localhost:8080 to play with dsa in the browsesr.
 
 You can find the application javascript file in `test/app/index.js`. This file
 will be compiled, with source maps inline, automatically by webpack.
+
+## Useful Resources
+
+* https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
