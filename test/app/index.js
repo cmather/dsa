@@ -12,8 +12,10 @@ import RedBlackTree, {RBNullNode} from '../../lib/red_black_tree';
 import Dijkstra, {shortestPath} from '../../lib/dijkstra';
 import {selectionSort, bubbleSort, quickSort} from '../../lib/sort';
 import compare from '../../lib/compare';
+import Runtime from '../../lib/runtime';
 
 window.dsa = {
+  Runtime: Runtime,
   compare: compare,
   Queue: Queue,
   Stack: Stack,
