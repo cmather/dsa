@@ -16,17 +16,4 @@ describe("compare", () => {
     let result = compare(1, 2);
     assert(result == -1, `expected -1 but got ${result}`)
   });
-
-  it ("should throw if values are not comparable", () => {
-    let result;
-    let thrown = false;
-    
-    try {
-      result = compare(1, undefined);
-    } catch (e) {
-      thrown = true;
-    }
-
-    assert(thrown, `compare(1, undefined) should throw`)
-  });
 });

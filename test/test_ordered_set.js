@@ -37,4 +37,16 @@ describe("OrderedSet", () => {
     }
     assert.equal(idx, 4);
   });
+
+  it ("should provide toArray sorted", () => {
+    let s = new OrderedSet;
+    s.add(1);
+    s.add(2);
+    s.add(3);
+
+    let expected = [1,2,3];
+    let actual = s.toArray();
+    assert.equal(actual.length, expected.length);
+    actual.forEach((val, idx) => assert.equal(val, expected[idx]));
+  });
 });

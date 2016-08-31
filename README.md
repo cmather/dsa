@@ -26,4 +26,12 @@ will be compiled, with source maps inline, automatically by webpack.
 
 ## Useful Resources
 
+**Red Black Trees**
 * https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
+
+**Hash Keys**
+* https://github.com/stites/data-structures/blob/0ba8fc4f7b1e62d4efbda0101c40374795f5e86c/sprint-two/src/hashTableHelpers.js
+
+**Dynamic Programming**
+* https://people.cs.clemson.edu/~bcdean/dp_practice/
+* http://www.geeksforgeeks.org/tag/dynamic-programming/

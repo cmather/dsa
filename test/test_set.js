@@ -74,4 +74,16 @@ describe('Set', () => {
     let r = s.remove(5);
     assert(!r, 'remove should return false if no value found');
   });
+
+  it ("should provide toArray", () => {
+    let s = new Set;
+    s.add(1);
+    s.add(2);
+    s.add(3);
+
+    let expected = [1,2,3];
+    let actual = s.toArray();
+    assert.equal(actual.length, expected.length);
+    actual.forEach((val) => assert(expected.indexOf(val) >= 0));
+  });
 });

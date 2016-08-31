@@ -14,24 +14,7 @@ import {selectionSort, bubbleSort, quickSort} from '../../lib/sort';
 import compare from '../../lib/compare';
 import Runtime from '../../lib/runtime';
 
-window.dsa = {
-  Runtime: Runtime,
-  compare: compare,
-  Queue: Queue,
-  Stack: Stack,
-  Graph: Graph,
-  HashTable: HashTable,
-  bfs: bfs,
-  dfs: dfs,
-  BinaryTree: BinaryTree,
-  BinarySearchTree: BinarySearchTree,
-  RedBlackTree: RedBlackTree,
-  MinHeap: MinHeap,
-  MaxHeap: MaxHeap,
-  MinPriorityQueue: MinPriorityQueue,
-  Dijkstra: Dijkstra,
-  shortestPath: shortestPath,
-  selectionSort: selectionSort,
-  bubbleSort: bubbleSort,
-  quickSort: quickSort
-};
+import edit from '../../problems/edit_distance';
+
+debugger
+window.res = edit('a', 'b');
