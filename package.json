@@ -11,6 +11,7 @@
   "author": "Chris Mather <chris@eventedmind.com>",
   "license": "MIT",
   "devDependencies": {
+    "an-array-of-english-words": "^1.1.0",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
