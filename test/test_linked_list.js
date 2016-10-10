@@ -11,7 +11,6 @@ describe("LinkedList", () => {
     let result;
 
     result = list.add(1);
-    assert.equal(result.value, 1);
     assert.equal(list.size, 1);
     assert.equal(list.head.value, 1);
 
@@ -24,19 +23,19 @@ describe("LinkedList", () => {
   it ("should provide remove method", () => {
     let list = new LinkedList;
 
-    let one = list.add(1);
-    let two = list.add(2);
-    let three = list.add(3);
+    list.add(1);
+    list.add(2);
+    list.add(3);
 
-    list.remove(two);
+    list.remove(list.head.next);
 
     assert.equal(list.size, 2);
-    assert.equal(one.prev, null);
-    assert.equal(one.next, three);
-    assert.equal(three.prev, one);
-    assert.equal(three.next, null);
-    assert.equal(list.head, one);
-    assert.equal(list.tail, three);
+    assert.equal(list.head.prev, null);
+    assert.equal(list.head.next.value, 3);
+    assert.equal(list.tail.prev.value, 1);
+    assert.equal(list.tail.next, null);
+    assert.equal(list.head.value, 1);
+    assert.equal(list.tail.value, 3);
   });
 
   it ("should provide pop method", () => {
