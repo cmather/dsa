@@ -23,6 +23,10 @@ describe('String Matching Finite Automata', () => {
     let input = `this is an unbelievable text! somewhere in it will be ababaca but we don't know where!`
     let answer = input.indexOf(`ababaca`);
     assert.equal(fsm.indexOf(input), answer, `expected the index of the pattern to be ${answer}`);
+
+    input = `a`
+    answer = input.indexOf('');
+    assert.equal(fsm.indexOf(input), answer, `expected the index of the pattern to be ${answer}`);
   });
 });
 
